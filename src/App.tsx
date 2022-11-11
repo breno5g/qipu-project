@@ -1,7 +1,11 @@
-import Hello from '~/components/Hello';
+import Header from './components/Header';
 
 function App() {
-  return <Hello />;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
 
 export default App;
