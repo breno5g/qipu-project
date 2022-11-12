@@ -1,4 +1,4 @@
-import { Container } from './styles';
+import { Container, EmptyCard } from './styles';
 import ProductCard from '../FoodCard';
 import { IProduct } from '~/interfaces/product';
 
@@ -13,6 +13,9 @@ function ProductList({ products, handleSelectProduct }: ProductListProps) {
       {products?.map((food: IProduct) => (
         <ProductCard key={food.id} product={food} onClick={handleSelectProduct} />
       ))}
+      <EmptyCard>
+        <span>\o/ Acabaram os itens!</span>
+      </EmptyCard>
     </Container>
   );
 }

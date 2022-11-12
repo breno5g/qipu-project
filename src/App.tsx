@@ -4,6 +4,7 @@ import ProductDetails from './components/FoodDetails';
 import Header from './components/Header';
 import { IProduct } from './interfaces/product';
 import ProductList from './components/ProductList';
+import AddProductButton from './components/AddProductButton';
 
 function App() {
   const [products, setProducts] = useState<IProduct[] | []>(productsData);
@@ -48,6 +49,7 @@ function App() {
           deleteProduct={handleDeleteProduct}
         />
       )}
+      <AddProductButton />
     </>
   );
 }
