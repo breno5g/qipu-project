@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.main`
-  height: calc(100vh - 60px);
+  height: calc(100vh - 50px);
   overflow-y: scroll;
   background-color: #fafafa;
 `;
