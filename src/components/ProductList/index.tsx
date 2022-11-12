@@ -14,7 +14,7 @@ function ProductList({ products, handleSelectProduct }: ProductListProps) {
         <ProductCard key={food.id} product={food} onClick={handleSelectProduct} />
       ))}
       <EmptyCard>
-        <span>\o/ Acabaram os itens!</span>
+        <span>༼ つ ╹ ╹ ༽つ Acabaram os itens!</span>
       </EmptyCard>
     </Container>
   );
