@@ -4,18 +4,20 @@ import { IProduct } from '~/interfaces/product';
 
 interface FoodDetailsProps {
   product: IProduct;
-  onClick(product: any): void;
+  close(product: any): void;
+  deleteProduct(id: number): void;
 }
 
 function FoodDetails({
-  product: { description, name, quantity, image, categories, price },
-  onClick,
+  product: { id, description, name, quantity, image, categories, price },
+  close,
+  deleteProduct,
 }: FoodDetailsProps) {
   return (
     <Container>
       <header>
         <div className='left-side'>
-          <button className='close-modal' onClick={onClick}>
+          <button className='close-modal' onClick={close}>
             <AiOutlineClose />
           </button>
           <div className='product-info'>
@@ -24,7 +26,7 @@ function FoodDetails({
           </div>
         </div>
         <aside className='right-side'>
-          <button className='delete-product-btn'>
+          <button className='delete-product-btn' onClick={() => deleteProduct(id)}>
             <AiFillDelete />
           </button>
           <button className='edit-product-btn'>
