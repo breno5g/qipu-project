@@ -1,9 +1,9 @@
 import Header from './components/Header';
-import ProductCard from './components/ProductCard';
-import { useState } from 'react';
 import { IProduct } from './interfaces/product';
+import ProductCard from './components/ProductCard';
 import ProductDetails from './components/ProductDetails';
 import { productsData } from 'developmentData';
+import { useState } from 'react';
 
 function App() {
   const [products, setProducts] = useState<IProduct[] | []>(productsData);

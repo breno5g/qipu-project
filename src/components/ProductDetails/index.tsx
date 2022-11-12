@@ -1,5 +1,5 @@
+import { AiFillDelete, AiFillEdit, AiOutlineClose } from 'react-icons/ai';
 import { Container } from './styles';
-import { AiOutlineClose, AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import { IProduct } from '~/interfaces/product';
 
 interface FoodDetailsProps {
@@ -46,7 +46,7 @@ function FoodDetails({
           </li>
           <li>
             <span className='title'>Valor de venda</span>
-            <span className='content'>R$ {price}</span>
+            <span className='content'>R$ {price.toFixed(2)}</span>
           </li>
           <li>
             <span className='title'>Descrição</span>
