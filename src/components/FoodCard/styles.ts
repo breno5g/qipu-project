@@ -7,6 +7,7 @@ interface ContainerProps {
 export const Container = styled.div<ContainerProps>`
   box-shadow: 0 2px #33333330;
   padding: 1rem;
+  cursor: pointer;
 
   header,
   div {

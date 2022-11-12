@@ -1,21 +1,26 @@
+import { IProduct } from '~/interfaces/product';
 import { Container } from './styles';
 
 interface FoodProps {
-  name: string;
-  quantity: number;
-  description: string;
+  product: IProduct;
+  onClick(product: any): void;
 }
 
-function index({ description, name, quantity }: FoodProps) {
+function index({ product, onClick }: FoodProps) {
   return (
-    <Container alertColor={quantity > 0 ? '--low-stock-alert' : '--out-of-stock-alert'}>
+    <Container
+      onClick={() => onClick(product)}
+      alertColor={product.quantity > 0 ? '--low-stock-alert' : '--out-of-stock-alert'}
+    >
       <header>
-        <h1>{name}</h1>
-        <span>{quantity}</span>
+        <h1>{product.name}</h1>
+        <span>{product.quantity}</span>
       </header>
       <div>
-        <p>{description}</p>
-        {quantity < 10 && <span>{quantity > 0 ? 'Estoque baixo' : 'Fora de estoque'}</span>}
+        <p>{product.description}</p>
+        {product.quantity < 10 && (
+          <span>{product.quantity > 0 ? 'Estoque baixo' : 'Fora de estoque'}</span>
+        )}
       </div>
     </Container>
   );

@@ -1,20 +1,26 @@
 import { Container } from './styles';
 import { AiOutlineClose, AiFillDelete, AiFillEdit } from 'react-icons/ai';
+import { IProduct } from '~/interfaces/product';
 
-function FoodDetails() {
+interface FoodDetailsProps {
+  product: IProduct;
+  onClick(product: any): void;
+}
+
+function FoodDetails({
+  product: { description, name, quantity, image, categories, price },
+  onClick,
+}: FoodDetailsProps) {
   return (
     <Container>
       <header>
         <div className='left-side'>
-          <button className='close-modal'>
+          <button className='close-modal' onClick={onClick}>
             <AiOutlineClose />
           </button>
           <div className='product-info'>
-            <img
-              src='https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG'
-              alt='coffee'
-            />
-            <h1>Café preto</h1>
+            <img src={image} alt={name} />
+            <h1>{name}</h1>
           </div>
         </div>
         <aside className='right-side'>
@@ -30,22 +36,19 @@ function FoodDetails() {
         <ul>
           <li>
             <span className='title'>Estoque</span>
-            <span className='content'>10</span>
+            <span className='content'>{quantity}</span>
           </li>
           <li>
             <span className='title'>Categorias</span>
-            <span className='content'>Bebidas, Café</span>
+            <span className='content'>{categories.join(', ')}</span>
           </li>
           <li>
             <span className='title'>Valor de venda</span>
-            <span className='content'>R$ 5.00</span>
+            <span className='content'>R$ {price}</span>
           </li>
           <li>
             <span className='title'>Descrição</span>
-            <span className='content'>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse libero dolor itaque
-              consequuntur ipsam, eaque accusantium.
-            </span>
+            <span className='content'>{description}</span>
           </li>
         </ul>
       </main>
