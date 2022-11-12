@@ -4,6 +4,7 @@ import ProductCard from './components/ProductCard';
 import ProductDetails from './components/ProductDetails';
 import { productsData } from 'developmentData';
 import { useState } from 'react';
+import ProductList from './components/ProductList';
 
 function App() {
   const [products, setProducts] = useState<IProduct[] | []>(productsData);
@@ -26,9 +27,7 @@ function App() {
   return (
     <>
       <Header />
-      {products?.map((food: IProduct) => (
-        <ProductCard key={food.id} product={food} onClick={handleSelectProduct} />
-      ))}
+      <ProductList products={products} handleSelectProduct={handleSelectProduct} />
       {selectedProduct && (
         <ProductDetails
           product={selectedProduct}

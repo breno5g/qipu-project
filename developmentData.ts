@@ -37,7 +37,7 @@ export const productsData = [
   },
   {
     id: 5,
-    name: 'Café Lilas',
+    name: 'Café Roxo',
     quantity: 10,
     description: 'teste',
     image: 'https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG',
@@ -65,6 +65,24 @@ export const productsData = [
   {
     id: 8,
     name: 'Café Vantablack',
+    quantity: 0,
+    description: 'teste',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG',
+    categories: ['bebida', 'café', 'Misteriosa'],
+    price: 5,
+  },
+  {
+    id: 9,
+    name: 'Café Amarelo',
+    quantity: 0,
+    description: 'teste',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG',
+    categories: ['bebida', 'café', 'Misteriosa'],
+    price: 5,
+  },
+  {
+    id: 10,
+    name: 'Café Magenta',
     quantity: 0,
     description: 'teste',
     image: 'https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG',
