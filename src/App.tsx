@@ -1,8 +1,8 @@
 import Header from './components/Header';
-import FoodCard from './components/FoodCard';
+import ProductCard from './components/ProductCard';
 import { useState } from 'react';
 import { IProduct } from './interfaces/product';
-import FoodDetails from './components/FoodDetails';
+import ProductDetails from './components/ProductDetails';
 import { productsData } from 'developmentData';
 
 function App() {
@@ -16,10 +16,10 @@ function App() {
   const handleDeleteProduct = (id: number) => {
     const filteredArray = products.filter((prod) => prod.id != id);
     setProducts(filteredArray);
-    closeFoodDetails();
+    closeProductDetails();
   };
 
-  const closeFoodDetails = () => {
+  const closeProductDetails = () => {
     setSelectedProduct(null);
   };
 
@@ -27,12 +27,12 @@ function App() {
     <>
       <Header />
       {products?.map((food: IProduct) => (
-        <FoodCard key={food.id} product={food} onClick={handleSelectProduct} />
+        <ProductCard key={food.id} product={food} onClick={handleSelectProduct} />
       ))}
       {selectedProduct && (
-        <FoodDetails
+        <ProductDetails
           product={selectedProduct}
-          close={closeFoodDetails}
+          close={closeProductDetails}
           deleteProduct={handleDeleteProduct}
         />
       )}
