@@ -10,7 +10,7 @@ export const Container = styled.button`
   width: 50px;
   border: none;
   border-radius: 50%;
-  box-shadow: 0 0 10px 3px #33333360;
+  box-shadow: 0 0 10px 3px #33333330;
   color: var(--main-color);
   position: fixed;
   bottom: 1rem;

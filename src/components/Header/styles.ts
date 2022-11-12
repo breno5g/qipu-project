@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Header = styled.header`
   .top-container {
-    padding: 0.3rem;
+    padding: 0.3rem 0.6rem;
     box-shadow: 0 2px #33333330;
 
     display: flex;

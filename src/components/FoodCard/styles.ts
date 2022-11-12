@@ -44,6 +44,7 @@ export const Container = styled.div<ContainerProps>`
           return props.alertColor;
         }}
       );
+      text-shadow: 0 1px 1px #33333340;
     }
   }
 `;
