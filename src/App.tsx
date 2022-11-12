@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import FoodCard from './components/FoodCard';
+import FoodDetails from './components/FoodDetails';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           quantity={food.quantity}
         />
       ))}
+      <FoodDetails />
     </>
   );
 }
