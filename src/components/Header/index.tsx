@@ -2,11 +2,18 @@ import { useState } from 'react';
 import { HiMenuAlt1, HiOutlineSearch } from 'react-icons/hi';
 import { Header } from './styles';
 
-function Index() {
+interface HeaderProps {
+  value: string;
+  handleSearchTerm(event: React.ChangeEvent<HTMLInputElement>): void;
+  clearSearch(value: string): void;
+}
+
+function Index({ value, handleSearchTerm, clearSearch }: HeaderProps) {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
 
   const handleSearchVisibility = () => {
     setIsSearchVisible((prevstate) => !prevstate);
+    clearSearch('');
   };
 
   return (
@@ -26,7 +33,8 @@ function Index() {
           name='search-input'
           className='search-input'
           placeholder='Insira o nome do produto'
-          onChange={() => []}
+          value={value}
+          onChange={handleSearchTerm}
         />
       )}
     </Header>

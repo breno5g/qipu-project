@@ -1,5 +1,5 @@
 import { productsData } from 'developmentData';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProductDetails from './components/FoodDetails';
 import Header from './components/Header';
 import { IProduct } from './interfaces/product';
@@ -7,7 +7,9 @@ import ProductList from './components/ProductList';
 
 function App() {
   const [products, setProducts] = useState<IProduct[] | []>(productsData);
+  const [filteredProdutcs, setFilteredProducts] = useState<IProduct[] | []>(products);
   const [selectedProduct, setSelectedProduct] = useState<IProduct | null>();
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleSelectProduct = (product: IProduct) => {
     setSelectedProduct(product);
@@ -23,10 +25,22 @@ function App() {
     setSelectedProduct(null);
   };
 
+  const handleSearchTerm = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setSearchTerm(value);
+  };
+
+  useEffect(() => {
+    const filteredProducts = products.filter((prod) =>
+      prod.name.toLowerCase().includes(searchTerm.trim()),
+    );
+    setFilteredProducts(filteredProducts);
+  }, [products, searchTerm]);
+
   return (
     <>
-      <Header />
-      <ProductList products={products} handleSelectProduct={handleSelectProduct} />
+      <Header value={searchTerm} handleSearchTerm={handleSearchTerm} clearSearch={setSearchTerm} />
+      <ProductList products={filteredProdutcs} handleSelectProduct={handleSelectProduct} />
       {selectedProduct && (
         <ProductDetails
           product={selectedProduct}
