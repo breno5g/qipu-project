@@ -1,6 +1,6 @@
 import { Container } from './styles';
+import ProductCard from '../FoodCard';
 import { IProduct } from '~/interfaces/product';
-import ProductCard from '../ProductCard';
 
 interface ProductListProps {
   products: IProduct[];

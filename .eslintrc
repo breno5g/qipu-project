@@ -32,12 +32,14 @@
     "sort-imports": [
       "warn",
       {
-        "ignoreCase": false,
-        "ignoreDeclarationSort": false,
-        "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
-        "allowSeparatedGroups": false
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true
       }
+    ],
+
+    "import/order": [
+      1,
+      { "groups": ["external", "builtin", "internal", "sibling", "parent", "index"] }
     ],
 
     "react-hooks/rules-of-hooks": "error",

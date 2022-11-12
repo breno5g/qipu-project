@@ -1,9 +1,8 @@
-import Header from './components/Header';
-import { IProduct } from './interfaces/product';
-import ProductCard from './components/ProductCard';
-import ProductDetails from './components/ProductDetails';
 import { productsData } from 'developmentData';
 import { useState } from 'react';
+import ProductDetails from './components/FoodDetails';
+import Header from './components/Header';
+import { IProduct } from './interfaces/product';
 import ProductList from './components/ProductList';
 
 function App() {

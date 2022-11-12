@@ -1,5 +1,5 @@
-import { IProduct } from '~/interfaces/product';
 import { Container } from './styles';
+import { IProduct } from '~/interfaces/product';
 
 interface FoodProps {
   product: IProduct;
