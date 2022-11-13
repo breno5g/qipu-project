@@ -42,6 +42,29 @@ export const Container = styled.main<ContainerProps>`
           flex-direction: column;
           gap: 1.5rem;
 
+          .add-new-categorie {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            input {
+              width: 90%;
+            }
+
+            .add {
+              width: 30px;
+              height: 30px;
+              border: 2px solid #fafafa;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 5rem !important;
+              padding: 0;
+            }
+          }
+
           span {
             margin: 0 auto;
             letter-spacing: 0.1rem;

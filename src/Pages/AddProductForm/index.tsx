@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Select, { MultiValue } from 'react-select';
 import { useNavigate } from 'react-router-dom';
+import { IoIosAdd } from 'react-icons/io';
 import { Container } from './style';
 import { IProduct } from '~/interfaces/product';
 import { useProducts } from '~/hooks/useProducts';
 
 function Index() {
-  const { addProduct } = useProducts();
+  const { addProduct, categories, addCategorie } = useProducts();
+  const [newCategorie, setNewCategorie] = useState('');
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [formValues, setFormValues] = useState<IProduct>({
@@ -109,6 +111,27 @@ function Index() {
                 clientes encontrarem o que querem.
               </p>
 
+              <div className='add-new-categorie'>
+                <input
+                  type='text'
+                  placeholder='Adicionar nova categoria'
+                  value={newCategorie}
+                  onChange={(event) => {
+                    setNewCategorie(event.target.value);
+                  }}
+                />
+                <button
+                  className='add'
+                  onClick={(event) => {
+                    event.preventDefault();
+                    addCategorie(newCategorie);
+                    setNewCategorie('');
+                  }}
+                >
+                  <IoIosAdd />
+                </button>
+              </div>
+
               <Select
                 isMulti
                 name='categories'
@@ -128,16 +151,7 @@ function Index() {
                     color: 'black',
                   }),
                 }}
-                options={[
-                  {
-                    label: 'bebida',
-                    value: 'bebida',
-                  },
-                  {
-                    label: 'café',
-                    value: 'café',
-                  },
-                ]}
+                options={categories.map((cat) => ({ label: cat, value: cat }))}
               />
             </div>
 

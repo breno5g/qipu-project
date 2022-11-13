@@ -11,7 +11,7 @@ interface EditProductModalProps {
 }
 
 function EditProductModal({ openCloseModal, data }: EditProductModalProps) {
-  const { editProduct } = useProducts();
+  const { editProduct, categories } = useProducts();
   const [productData, setProductData] = useState(data);
 
   const handleProduct = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -72,16 +72,7 @@ function EditProductModal({ openCloseModal, data }: EditProductModalProps) {
                 closeMenuOnSelect={false}
                 onChange={handleSelect}
                 placeholder={'Selecione as Categorias'}
-                options={[
-                  {
-                    label: 'bebida',
-                    value: 'bebida',
-                  },
-                  {
-                    label: 'café',
-                    value: 'café',
-                  },
-                ]}
+                options={categories.map((cat) => ({ label: cat, value: cat }))}
               />
             </label>
             <label htmlFor='price'>
