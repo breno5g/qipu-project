@@ -24,6 +24,7 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
   const deleteProduct = (id: number) => {
     const filteredArray = products?.filter((prod) => prod.id != id);
     setProducts(filteredArray);
+    saveToLocalStorage('clear');
   };
 
   const editProduct = (data: EditedProductData) => {
@@ -44,14 +45,14 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
     setSelectedProduct(data);
   };
 
-  const saveToLocalStorage = () => {
-    if (products.length) {
-      localStorage.setItem('meiStorage', JSON.stringify(products));
-    }
+  const saveToLocalStorage = (param?: string) => {
+    localStorage.setItem('meiStorage', JSON.stringify(param ? [] : products));
   };
 
   useEffect(() => {
-    saveToLocalStorage();
+    if (products.length) {
+      saveToLocalStorage();
+    }
   }, [products]);
 
   useEffect(() => {

@@ -18,9 +18,13 @@ function EditProductModal({ openCloseModal, data }: EditProductModalProps) {
     event.preventDefault();
 
     const { name, value } = event.target;
+    let valueHandler: string | number = value;
+    if (name === 'quantity' || name === 'price') {
+      valueHandler = Number(value);
+    }
     setProductData({
       ...productData,
-      [name]: value,
+      [name]: valueHandler,
     });
   };
 
