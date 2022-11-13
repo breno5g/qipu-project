@@ -16,6 +16,9 @@ export const Header = styled.header`
       color: var(--main-color);
       font-size: 2rem;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     span {
