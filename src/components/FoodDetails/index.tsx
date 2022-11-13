@@ -3,19 +3,17 @@ import { useState } from 'react';
 import { Container } from './styles';
 import EditProductModal from '../EditProductModal';
 import { IProduct } from '~/interfaces/product';
+import { useProducts } from '~/hooks/useProducts';
 
 interface FoodDetailsProps {
-  product: IProduct;
   close(product: any): void;
   deleteProduct(id: number): void;
 }
 
-function FoodDetails({
-  product: { id, description, name, quantity, image, categories, price },
-  close,
-  deleteProduct,
-}: FoodDetailsProps) {
+function FoodDetails({ close, deleteProduct }: FoodDetailsProps) {
   const [isEditModalVisible, setIsEditModalVisible] = useState<boolean>(false);
+  const { selectedProduct } = useProducts();
+  const { name, categories, description, id, image, price, quantity } = selectedProduct as IProduct;
 
   const handleEditModal = () => {
     setIsEditModalVisible((prevstate) => !prevstate);
@@ -26,7 +24,7 @@ function FoodDetails({
       <Container>
         <header>
           <div className='left-side'>
-            <button className='close-modal' onClick={close}>
+            <button className='close-modal' onClick={() => close(null)}>
               <AiOutlineClose />
             </button>
             <div className='product-info'>

@@ -7,22 +7,17 @@ import AddProductButton from './components/AddProductButton';
 import { useProducts } from './hooks/useProducts';
 
 function App() {
-  const { products, deleteProduct } = useProducts();
+  const { products, selectedProduct, selectProduct, deleteProduct } = useProducts();
   const [filteredProdutcs, setFilteredProducts] = useState<IProduct[] | []>(products);
-  const [selectedProduct, setSelectedProduct] = useState<IProduct | null>();
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleSelectProduct = (product: IProduct) => {
-    setSelectedProduct(product);
+  const handleSelectProduct = (data: IProduct | null) => {
+    selectProduct(data);
   };
 
   const handleDeleteProduct = (id: number) => {
     deleteProduct(id);
-    closeProductDetails();
-  };
-
-  const closeProductDetails = () => {
-    setSelectedProduct(null);
+    handleSelectProduct(null);
   };
 
   const handleSearchTerm = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +39,7 @@ function App() {
       {selectedProduct && (
         <ProductDetails
           product={selectedProduct}
-          close={closeProductDetails}
+          close={handleSelectProduct}
           deleteProduct={handleDeleteProduct}
         />
       )}

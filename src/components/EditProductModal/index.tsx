@@ -14,7 +14,7 @@ function EditProductModal({ openCloseModal, data }: EditProductModalProps) {
   const { editProduct } = useProducts();
   const [productData, setProductData] = useState(data);
 
-  const handleProduct = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleProduct = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     event.preventDefault();
 
     const { name, value } = event.target;
@@ -51,7 +51,7 @@ function EditProductModal({ openCloseModal, data }: EditProductModalProps) {
             <label htmlFor='quantity'>
               Quantidade
               <input
-                type='text'
+                type='number'
                 id='quantity'
                 name='quantity'
                 placeholder='Insira a quantidade'
@@ -88,6 +88,7 @@ function EditProductModal({ openCloseModal, data }: EditProductModalProps) {
                 name='price'
                 placeholder='Insira o preço'
                 value={productData.price}
+                onChange={handleProduct}
               />
             </label>
             <label htmlFor='description'>
@@ -96,6 +97,7 @@ function EditProductModal({ openCloseModal, data }: EditProductModalProps) {
                 name='description'
                 placeholder='Insira a descrição do produto'
                 value={productData.description}
+                onChange={handleProduct}
               />
             </label>
             <button type='submit'>Salvar</button>
