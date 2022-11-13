@@ -1,5 +1,5 @@
-import { productsData } from 'developmentData';
-import { createContext, ReactNode, useContext, useState } from 'react';
+// import { productsData } from 'developmentData';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import { EditedProductData, IProduct } from '~/interfaces/product';
 
 interface ProductsContextData {
@@ -18,19 +18,19 @@ interface ProductsProviderProps {
 const ProductsContenxt = createContext<ProductsContextData>({} as ProductsContextData);
 
 export function ProductsProvider({ children }: ProductsProviderProps) {
-  const [products, setProducts] = useState<IProduct[] | []>(productsData);
+  const [products, setProducts] = useState<IProduct[] | []>([]);
   const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
 
   const deleteProduct = (id: number) => {
-    const filteredArray = products.filter((prod) => prod.id != id);
+    const filteredArray = products?.filter((prod) => prod.id != id);
     setProducts(filteredArray);
   };
 
   const editProduct = (data: EditedProductData) => {
-    const editedProductArray = products.map((prod) =>
+    const editedProductArray = products?.map((prod) =>
       prod.id === data.id ? { ...prod, ...data } : prod,
     );
-    const selected = editedProductArray.filter((prod) => prod.id === data.id);
+    const selected = editedProductArray?.filter((prod) => prod.id === data.id);
     selectProduct(selected[0]);
     setProducts(editedProductArray);
   };
@@ -43,6 +43,24 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
   const selectProduct = (data: IProduct | null) => {
     setSelectedProduct(data);
   };
+
+  const saveToLocalStorage = () => {
+    if (products.length) {
+      localStorage.setItem('meiStorage', JSON.stringify(products));
+    }
+  };
+
+  useEffect(() => {
+    saveToLocalStorage();
+  }, [products]);
+
+  useEffect(() => {
+    const storageProducts = localStorage.getItem('meiStorage');
+
+    if (storageProducts?.length) {
+      setProducts(JSON.parse(storageProducts));
+    }
+  }, []);
 
   return (
     <ProductsContenxt.Provider
