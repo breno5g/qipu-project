@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import Select, { MultiValue } from 'react-select';
 import { Container } from './styles';
+import { EditedProductData } from '~/interfaces/product';
+import { useProducts } from '~/hooks/useProducts';
 
 interface EditProductModalProps {
   openCloseModal(): void;
-  data: { id: number; quantity: number; categories: string[]; price: number; description: string };
+  data: EditedProductData;
 }
 
 function EditProductModal({ openCloseModal, data }: EditProductModalProps) {
+  const { editProduct } = useProducts();
   const [productData, setProductData] = useState(data);
 
   const handleProduct = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,12 +25,16 @@ function EditProductModal({ openCloseModal, data }: EditProductModalProps) {
   };
 
   const handleSelect = (data: MultiValue<{ label: string; value: string }>) => {
-    console.log(data);
-
     setProductData({
       ...productData,
       categories: data.map((prod) => prod.value),
     });
+  };
+
+  const handleEditProduct = (event: React.FormEvent) => {
+    event.preventDefault();
+    editProduct(productData);
+    openCloseModal();
   };
 
   return (
@@ -40,7 +47,7 @@ function EditProductModal({ openCloseModal, data }: EditProductModalProps) {
           </button>
         </header>
         <main>
-          <form>
+          <form onSubmit={handleEditProduct}>
             <label htmlFor='quantity'>
               Quantidade
               <input

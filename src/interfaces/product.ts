@@ -7,3 +7,5 @@ export type IProduct = {
   price: number;
   categories: string[];
 };
+
+export type EditedProductData = Omit<IProduct, 'name' | 'image'>;

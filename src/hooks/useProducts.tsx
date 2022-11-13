@@ -1,10 +1,11 @@
 import { productsData } from 'developmentData';
 import { createContext, ReactNode, useContext, useState } from 'react';
-import { IProduct } from '~/interfaces/product';
+import { EditedProductData, IProduct } from '~/interfaces/product';
 
 interface ProductsContextData {
   products: IProduct[];
   deleteProduct(id: number): void;
+  editProduct(data: EditedProductData): void;
 }
 
 interface ProductsProviderProps {
@@ -21,8 +22,16 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
     setProducts(filteredArray);
   };
 
+  const editProduct = (data: EditedProductData) => {
+    const editedProductArray = products.map((prod) =>
+      prod.id === data.id ? { ...prod, ...data } : prod,
+    );
+
+    setProducts(editedProductArray);
+  };
+
   return (
-    <ProductsContenxt.Provider value={{ products, deleteProduct }}>
+    <ProductsContenxt.Provider value={{ products, deleteProduct, editProduct }}>
       {children}
     </ProductsContenxt.Provider>
   );
