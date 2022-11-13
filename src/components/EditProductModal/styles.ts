@@ -17,7 +17,7 @@ export const Container = styled.div`
     height: 90%;
     background-color: #f5f5f5;
     border-radius: 0.5rem;
-    overflow: hidden;
+    overflow: hidden scroll;
 
     header {
       display: flex;

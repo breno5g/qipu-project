@@ -67,6 +67,7 @@ function FoodDetails({ close, deleteProduct }: FoodDetailsProps) {
           openCloseModal={handleEditModal}
           data={{
             id,
+            name,
             quantity,
             categories,
             description,

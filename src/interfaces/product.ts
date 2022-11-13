@@ -8,4 +8,4 @@ export type IProduct = {
   categories: string[];
 };
 
-export type EditedProductData = Omit<IProduct, 'name' | 'image'>;
+export type EditedProductData = Omit<IProduct, 'image'>;

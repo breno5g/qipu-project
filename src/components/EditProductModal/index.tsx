@@ -52,6 +52,17 @@ function EditProductModal({ openCloseModal, data }: EditProductModalProps) {
         </header>
         <main>
           <form onSubmit={handleEditProduct}>
+            <label htmlFor='name'>
+              Nome
+              <input
+                type='text'
+                id='name'
+                name='name'
+                placeholder='Insira o nome'
+                value={productData.name}
+                onChange={handleProduct}
+              />
+            </label>
             <label htmlFor='quantity'>
               Quantidade
               <input
