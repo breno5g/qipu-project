@@ -1,8 +1,35 @@
+import React, { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
-import Select from 'react-select';
+import Select, { MultiValue } from 'react-select';
 import { Container } from './styles';
 
 function EditProductModal() {
+  const [productData, setProductData] = useState({
+    quantity: 10,
+    categories: ['Bebida', 'Café'],
+    price: 5,
+    description: 'lorem ipsum dolor sit amet',
+  });
+
+  const handleProduct = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+
+    const { name, value } = event.target;
+    setProductData({
+      ...productData,
+      [name]: value,
+    });
+  };
+
+  const handleSelect = (data: MultiValue<{ label: string; value: string }>) => {
+    console.log(data);
+
+    setProductData({
+      ...productData,
+      categories: data.map((prod) => prod.value),
+    });
+  };
+
   return (
     <Container>
       <div className='content'>
@@ -16,27 +43,53 @@ function EditProductModal() {
           <form>
             <label htmlFor='quantity'>
               Quantidade
-              <input type='text' id='quantity' placeholder='Insira a quantidade' />
+              <input
+                type='text'
+                id='quantity'
+                name='quantity'
+                placeholder='Insira a quantidade'
+                value={productData.quantity}
+                onChange={handleProduct}
+              />
             </label>
             <label htmlFor='categories'>
               Categorias
               <Select
                 isMulti
+                name='categories'
+                defaultValue={productData.categories.map((prod) => ({ label: prod, value: prod }))}
                 closeMenuOnSelect={false}
+                onChange={handleSelect}
                 placeholder={'Selecione as Categorias'}
                 options={[
-                  { value: 'Bebida', label: 'Bebida' },
-                  { value: 'Café', label: 'Café' },
+                  {
+                    label: 'Bebida',
+                    value: 'Bebida',
+                  },
+                  {
+                    label: 'Café',
+                    value: 'Café',
+                  },
                 ]}
               />
             </label>
             <label htmlFor='price'>
               Preço
-              <input type='number' id='price' placeholder='Insira o preço' />
+              <input
+                type='number'
+                id='price'
+                name='price'
+                placeholder='Insira o preço'
+                value={productData.price}
+              />
             </label>
             <label htmlFor='description'>
               Descrição
-              <textarea />
+              <textarea
+                name='description'
+                placeholder='Insira a descrição do produto'
+                value={productData.description}
+              />
             </label>
             <button type='submit'>Salvar</button>
           </form>
