@@ -7,12 +7,13 @@ interface ContainerProps {
 export const Container = styled.main<ContainerProps>`
   height: 100vh;
   background-color: tomato;
+  background: linear-gradient(180deg, rgba(36, 127, 255, 1) 0%, rgba(0, 212, 255, 1) 100%);
 
   form {
     height: 100vh;
     max-width: 550px;
-    background-color: teal;
     overflow: hidden;
+    margin: auto;
 
     .carousel {
       width: calc(100vw * 6);
@@ -34,7 +35,6 @@ export const Container = styled.main<ContainerProps>`
         justify-content: space-between;
         border: none;
         color: #fafafa;
-        background: linear-gradient(180deg, rgba(36, 127, 255, 1) 0%, rgba(0, 212, 255, 1) 100%);
 
         div.top-content {
           padding: 2rem;
