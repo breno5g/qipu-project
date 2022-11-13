@@ -21,10 +21,14 @@ export const Container = styled.main<ContainerProps>`
       grid-template-columns: repeat(6, 1fr);
       transform: translateX(calc(${(props) => props.step} * -100vw));
 
+      @media (min-width: 600px) {
+        width: calc(550px * 6);
+        transform: translateX(calc(${(props) => props.step} * -550px));
+      }
+
       fieldset {
         height: 100vh;
         min-height: 500px;
-        min-width: 100vw;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
