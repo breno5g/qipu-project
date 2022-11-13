@@ -1,5 +1,5 @@
 import { Container, EmptyCard } from './styles';
-import ProductCard from '../FoodCard';
+import ProductCard from '../ProductCard';
 import { IProduct } from '~/interfaces/product';
 
 interface ProductListProps {

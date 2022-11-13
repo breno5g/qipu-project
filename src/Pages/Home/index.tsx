@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import ProductDetails from '../../components/FoodDetails';
+import ProductDetails from '../../components/ProductDetails';
 import Header from '../../components/Header';
 import { IProduct } from '../../interfaces/product';
 import ProductList from '../../components/ProductList';
