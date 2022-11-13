@@ -5,6 +5,7 @@ import Header from './components/Header';
 import { IProduct } from './interfaces/product';
 import ProductList from './components/ProductList';
 import AddProductButton from './components/AddProductButton';
+import EditProductModal from './components/EditProductModal';
 
 function App() {
   const [products, setProducts] = useState<IProduct[] | []>(productsData);
@@ -50,6 +51,7 @@ function App() {
         />
       )}
       <AddProductButton />
+      <EditProductModal />
     </>
   );
 }

@@ -6,6 +6,7 @@ export const Container = styled.div`
   position: absolute;
   background-color: #f5f5f5;
   top: 0;
+  z-index: 100;
 
   header {
     display: flex;
