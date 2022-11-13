@@ -7,6 +7,7 @@ interface ProductsContextData {
   selectedProduct: IProduct | null;
   deleteProduct(id: number): void;
   editProduct(data: EditedProductData): void;
+  addProduct(data: IProduct): void;
   selectProduct(data: IProduct | null): void;
 }
 
@@ -34,13 +35,18 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
     setProducts(editedProductArray);
   };
 
+  const addProduct = (data: IProduct) => {
+    const productHandler = [...products, data];
+    setProducts(productHandler);
+  };
+
   const selectProduct = (data: IProduct | null) => {
     setSelectedProduct(data);
   };
 
   return (
     <ProductsContenxt.Provider
-      value={{ products, selectedProduct, deleteProduct, editProduct, selectProduct }}
+      value={{ products, selectedProduct, deleteProduct, editProduct, addProduct, selectProduct }}
     >
       {children}
     </ProductsContenxt.Provider>
