@@ -3,13 +3,13 @@ import { AiOutlineClose } from 'react-icons/ai';
 import Select, { MultiValue } from 'react-select';
 import { Container } from './styles';
 
-function EditProductModal() {
-  const [productData, setProductData] = useState({
-    quantity: 10,
-    categories: ['Bebida', 'Café'],
-    price: 5,
-    description: 'lorem ipsum dolor sit amet',
-  });
+interface EditProductModalProps {
+  openCloseModal(): void;
+  data: { id: number; quantity: number; categories: string[]; price: number; description: string };
+}
+
+function EditProductModal({ openCloseModal, data }: EditProductModalProps) {
+  const [productData, setProductData] = useState(data);
 
   const handleProduct = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -35,7 +35,7 @@ function EditProductModal() {
       <div className='content'>
         <header>
           <h1>Editar produto</h1>
-          <button className='close-modal'>
+          <button className='close-modal' onClick={openCloseModal}>
             <AiOutlineClose />
           </button>
         </header>
@@ -63,12 +63,12 @@ function EditProductModal() {
                 placeholder={'Selecione as Categorias'}
                 options={[
                   {
-                    label: 'Bebida',
-                    value: 'Bebida',
+                    label: 'bebida',
+                    value: 'bebida',
                   },
                   {
-                    label: 'Café',
-                    value: 'Café',
+                    label: 'café',
+                    value: 'café',
                   },
                 ]}
               />

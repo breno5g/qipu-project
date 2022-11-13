@@ -4,7 +4,6 @@ import Header from './components/Header';
 import { IProduct } from './interfaces/product';
 import ProductList from './components/ProductList';
 import AddProductButton from './components/AddProductButton';
-import EditProductModal from './components/EditProductModal';
 import { useProducts } from './hooks/useProducts';
 
 function App() {
@@ -50,7 +49,6 @@ function App() {
         />
       )}
       <AddProductButton />
-      <EditProductModal />
     </>
   );
 }
