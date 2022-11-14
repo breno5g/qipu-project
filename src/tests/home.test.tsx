@@ -58,7 +58,7 @@ describe('Home', () => {
       expect(closeModalBtn).not.toBeInTheDocument();
     });
 
-    it.only('should be possible edit product', async () => {
+    it('should be possible edit product', async () => {
       const { container } = render(<App />);
       const productList = container.querySelector('main');
       const firstItem = productList?.children[0];
@@ -80,6 +80,21 @@ describe('Home', () => {
       const name = container.querySelector('.product-info h1');
       expect(name).toBeInTheDocument();
       expect(name?.innerHTML).toBe('Nome de teste');
+    });
+
+    it('should be possible delete product', async () => {
+      const { container } = render(<App />);
+      const productList = container.querySelector('main');
+      const firstItem = productList?.children[0];
+      await userEvent.click(firstItem);
+
+      const deleteBtn = container.querySelector('.delete-product-btn');
+      expect(deleteBtn).toBeInTheDocument();
+      await userEvent.click(deleteBtn);
+
+      const allItems = productList?.childElementCount;
+
+      expect(allItems).toBe(10);
     });
   });
 });
