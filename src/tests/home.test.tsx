@@ -3,7 +3,7 @@
 
 import { describe, expect, it } from 'vitest';
 import { storageMock } from './storage.mock';
-import { render, screen, userEvent } from '../../test-utils';
+import { render, userEvent } from '../../test-utils';
 
 import App from '../App';
 // Setting up based article: https://www.linkedin.com/pulse/setting-up-rtl-vite-react-project-william-ku/
@@ -47,14 +47,39 @@ describe('Home', () => {
       expect(categories).toBeInTheDocument();
     });
 
-    it.only('should be possible close product details', async () => {
+    it('should be possible close product details', async () => {
       const { container } = render(<App />);
       const productList = container.querySelector('main');
       const firstItem = productList?.children[0];
       await userEvent.click(firstItem);
       const closeModalBtn = container.querySelector('.close-modal');
+      expect(closeModalBtn).toBeInTheDocument();
       await userEvent.click(closeModalBtn);
       expect(closeModalBtn).not.toBeInTheDocument();
+    });
+
+    it.only('should be possible edit product', async () => {
+      const { container } = render(<App />);
+      const productList = container.querySelector('main');
+      const firstItem = productList?.children[0];
+      await userEvent.click(firstItem);
+
+      const editProductBtn = container.querySelector('.edit-product-btn');
+      expect(editProductBtn).toBeInTheDocument();
+      await userEvent.click(editProductBtn);
+
+      const nameInput = container.querySelector('input[placeholder="Insira o nome"]');
+      expect(nameInput).toBeInTheDocument;
+      await userEvent.clear(nameInput);
+      await userEvent.type(nameInput, 'Nome de teste');
+
+      const saveBtn = container.querySelector('button[type="submit"]');
+      expect(saveBtn).toBeInTheDocument();
+      await userEvent.click(saveBtn);
+
+      const name = container.querySelector('.product-info h1');
+      expect(name).toBeInTheDocument();
+      expect(name?.innerHTML).toBe('Nome de teste');
     });
   });
 });
