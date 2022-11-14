@@ -6,7 +6,7 @@
 
 - node >= 16.15.0
 
-### Comandos
+### Comandos para executar o projeto
 
 ```bash
   npm install
@@ -14,6 +14,13 @@
 ```
 
 Em seguida acesse http://localhost:3000
+
+### Comandos para executar os testes
+
+```bash
+  npm test # Para executar os testes gerais
+  npm run test:coverage # Para executar o teste de cobertura
+```
 
 ## Tecnlogias utilizadas:
 
