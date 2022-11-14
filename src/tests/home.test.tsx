@@ -24,16 +24,37 @@ describe('Home', () => {
       expect(searchbox).toBeInTheDocument();
     });
   });
-  describe('Product List', () => {
+  describe('Product List', async () => {
     beforeAll(() => {
       global.Storage.prototype.getItem = vitest.fn((key) => storageMock[key]);
     });
 
-    it('should be possible view all products in the list', () => {
+    it('should be possible view all products in the list', async () => {
       const { container } = render(<App />);
       const productList = container.querySelector('main');
       const allItems = productList?.childElementCount;
       expect(allItems).toBe(11);
+    });
+
+    it('should be possible view product info', async () => {
+      const { container, getByText } = render(<App />);
+      const productList = container.querySelector('main');
+      const firstItem = productList?.children[0];
+      await userEvent.click(firstItem);
+      const price = getByText('R$ 5.00');
+      const categories = getByText('bebida, café');
+      expect(price).toBeInTheDocument();
+      expect(categories).toBeInTheDocument();
+    });
+
+    it.only('should be possible close product details', async () => {
+      const { container } = render(<App />);
+      const productList = container.querySelector('main');
+      const firstItem = productList?.children[0];
+      await userEvent.click(firstItem);
+      const closeModalBtn = container.querySelector('.close-modal');
+      await userEvent.click(closeModalBtn);
+      expect(closeModalBtn).not.toBeInTheDocument();
     });
   });
 });
